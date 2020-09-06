@@ -5,8 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widgets/grid.dart';
 
 class HomeScreen extends StatelessWidget {
-  final todayDate= DateFormat.yMMMMEEEEd().format(DateTime.now());
-
+  final todayDate = DateFormat.yMMMMEEEEd().format(DateTime.now());
 
   final List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
@@ -21,10 +20,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(0, 01, 19, 1),
-        title: Text('MyClasses',textAlign: TextAlign.center,style: GoogleFonts.zillaSlab(),),
+        backgroundColor: Color.fromRGBO(0, 01, 25, 1),
+        title: Text(
+          'MyClasses',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.poppins(),
+        ),
       ),
       body: Stack(
         children: [
@@ -32,7 +36,18 @@ class HomeScreen extends StatelessWidget {
             height: device.height * 0.35,
             width: device.width,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(0, 01, 19, 1),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 01, 25, 0.2),
+                  blurRadius: 5.0, // soften the shadow
+                  spreadRadius: 1.0, //extend the shadow
+                  offset: Offset(
+                    0.5, // Move to right 10  horizontally
+                    1.0, // Move to bottom 10 Vertically
+                  ),
+                )
+              ],
+              color: Color.fromRGBO(0, 01, 25, 1),
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(45),
               ),
@@ -49,19 +64,18 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Hello!',
-                      style: GoogleFonts.gayathri(
+                      'Hello..!',
+                      style: GoogleFonts.montserrat(
                         color: Colors.white,
                         fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                        //fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       'Classes on your way',
-                      style: GoogleFonts.gayathri(
+                      style: GoogleFonts.montserrat(
                         color: Colors.white,
                         fontSize: 25,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -103,15 +117,27 @@ class HomeScreen extends StatelessWidget {
                 height: device.height * 0.14,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal:device.width*0.04),
+                padding: EdgeInsets.symmetric(horizontal: device.width * 0.04),
                 margin: EdgeInsets.symmetric(
                     horizontal: device.width * 0.07,
                     vertical: device.height * 0.01),
                 height: device.height * 0.1,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(253, 52, 75, 0.5),
+                      blurRadius: 10.0, // soften the shadow
+                      spreadRadius: 0.5, //extend the shadow
+                      offset: Offset(
+                        0.0, // Move to right 10  horizontally
+                        2.0, // Move to bottom 10 Vertically
+                      ),
+                    )
+                  ],
+                  border: Border.all(color: Color.fromRGBO(253, 52, 75, 1)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromRGBO(253, 52, 75, 1),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -121,15 +147,21 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           'TODAY',
-                          style: GoogleFonts.merriweather(
-                            color: Color.fromRGBO(110, 149, 252, 1),
-                            fontSize: 40
-                          ),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 40),
                         ),
-                        Text(todayDate,style: GoogleFonts.arvo(),),
+                        Text(
+                          todayDate,
+                          style: GoogleFonts.arvo(color: Colors.white),
+                        ),
                       ],
                     ),
-                    Image.asset('assets/calender.png')
+                    // Image.asset('assets/calender.png')
+                    Icon(
+                      Icons.calendar_today,
+                      color: Colors.white,
+                      size: 46.0,
+                    ),
                   ],
                 ),
               ),
@@ -137,11 +169,23 @@ class HomeScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(
                     horizontal: device.width * 0.07,
                     vertical: device.height * 0.01),
-                height: device.height * 0.07,
+                height: device.height * 0.1,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(30, 54, 164, 0.5),
+                      blurRadius: 10.0, // soften the shadow
+                      spreadRadius: 0.5, //extend the shadow
+                      offset: Offset(
+                        0.0, // Move to right 10  horizontally
+                        2.0, // Move to bottom 10 Vertically
+                      ),
+                    )
+                  ],
+                  border: Border.all(color: Color.fromRGBO(30, 54, 164, 1)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromRGBO(30, 54, 164, 1),
+                ),
                 // child: Text('hello'),
               ),
             ],

@@ -18,17 +18,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Items()),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Routine App',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: HomeScreen(),
-          routes: {
-            WeekDayScreen.routeName : (ctx)=>WeekDayScreen(),
-          },
-          ),
+        debugShowCheckedModeBanner: false,
+        title: 'Routine App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: HomeScreen(),
+        routes: {
+          WeekDayScreen.routeName: (ctx) => WeekDayScreen(),
+        },
+      ),
     );
   }
 }
