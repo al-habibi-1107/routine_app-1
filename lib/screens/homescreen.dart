@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/grid.dart';
 
 class HomeScreen extends StatelessWidget {
-  List<List<Object>> weekDays = [
+  final todayDate= DateFormat.yMMMMEEEEd().format(DateTime.now());
+
+
+  final List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
     ['Tuesday', Icon(Icons.tag_faces)],
     ['Wednesday', Icon(Icons.tag_faces)],
@@ -20,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 01, 19, 1),
-        title: Text('MyClasses'),
+        title: Text('MyClasses',textAlign: TextAlign.center,),
       ),
       body: Stack(
         children: [
@@ -99,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                 height: device.height * 0.14,
               ),
               Container(
+                padding: EdgeInsets.symmetric(horizontal:device.width*0.04),
                 margin: EdgeInsets.symmetric(
                     horizontal: device.width * 0.07,
                     vertical: device.height * 0.01),
@@ -108,8 +112,11 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Colors.white),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           'TODAY',
@@ -118,8 +125,10 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 40
                           ),
                         ),
+                        Text(todayDate,style: GoogleFonts.arvo(),),
                       ],
-                    )
+                    ),
+                    Image.asset('assets/calender.png')
                   ],
                 ),
               ),
