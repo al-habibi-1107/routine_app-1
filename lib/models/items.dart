@@ -33,8 +33,10 @@ class Items with ChangeNotifier {
   }
 
   List<Item> getDayItems(String day) {
-    List<Item> list= _items.where((element) => element.day==day);
+   List<Item>list= _items.where((element) => element.day==day).toList();
+     //print(list[0].day);
+     
      return list;
-     print(list);
+     
   }
 }
