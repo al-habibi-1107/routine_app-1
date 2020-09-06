@@ -196,26 +196,3 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Container(
-//   margin: EdgeInsets.symmetric(
-//       horizontal: device.width * 0.07,
-//       vertical: device.height * 0.01),
-//   height: device.height * 0.07,
-//   decoration: BoxDecoration(
-//     boxShadow: [
-//       BoxShadow(
-//           color: Color.fromRGBO(245, 79, 98, 1),
-//           offset: Offset.infinite)
-//     ],
-//     borderRadius: BorderRadius.all(Radius.circular(10)),
-//     gradient: LinearGradient(
-//       colors: [
-//         Color.fromRGBO(245, 79, 98, 1),
-//         Color.fromRGBO(253, 52, 75, 1)
-//       ],
-//       begin: Alignment.topCenter,
-//       end: Alignment.bottomCenter,
-//     ),
-//   ),
-//   // child: Text('hello'),
-// ),

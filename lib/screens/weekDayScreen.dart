@@ -25,41 +25,31 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
   int currentTab = 0;
   bool isEmpty;
   String currentDay;
+  bool first = true;
   @override
   Widget build(BuildContext context) {
+    if (first) {
+      currentDay = ModalRoute.of(context).settings.arguments;
+      first = false;
+    }
 
-
-
-    
-
-     currentDay = ModalRoute.of(context).settings.arguments;
     currentTab = weekDays.indexWhere((element) => element == currentDay);
     List<Item> currentElements =
         Provider.of<Items>(context).getDayItems(currentDay);
-     isEmpty=currentElements.isEmpty;
-    
-    void changeCurrentDay(int index){
-      setState(() {
-        
-      currentDay=weekDays[index];
-      currentElements =
-        Provider.of<Items>(context,listen: false).getDayItems(currentDay);
-        isEmpty=currentElements.isEmpty;
-        print(isEmpty);
-         print(currentTab);
-              print(currentDay);
-      });
-    }
+    isEmpty = currentElements.isEmpty;
 
-    void switchEmpty(){
+    void changeCurrentDay(int index) {
       setState(() {
-        
-      isEmpty?isEmpty=false:isEmpty=true;
+        currentDay = weekDays[index];
+        currentElements =
+            Provider.of<Items>(context, listen: false).getDayItems(currentDay);
+        isEmpty = currentElements.isEmpty;
+        print(currentDay);
       });
     }
 
     return DefaultTabController(
-     // initialIndex: currentTab,
+       initialIndex: currentTab,
       length: weekDays.length,
       child: Scaffold(
         appBar: AppBar(
@@ -68,13 +58,10 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
           centerTitle: true,
           bottom: TabBar(
             onTap: (index) {
-             
               currentTab = index;
               changeCurrentDay(index);
-              //switchEmpty();
-                print(isEmpty);
-              
-             
+
+              print(isEmpty);
             },
             isScrollable: true,
             tabs: [
@@ -87,15 +74,14 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
             ],
           ),
         ),
-        body: isEmpty? Center(child:Text('empty day')): Center(
-          child:Text('nino')
-        )
-        // ListView.builder(
-        //   itemBuilder: (ctx, i) {
-        //     return ItemTile();
-        //   },
-        //   itemCount: currentElements.length,
-        // ),
+        body: isEmpty
+            ? Center(child: Text('empty day'))
+            : ListView.builder(
+                itemBuilder: (ctx, i) {
+                  return ItemTile(currentElements[i]);
+                },
+                itemCount: currentElements.length,
+              ),
       ),
     );
   }
