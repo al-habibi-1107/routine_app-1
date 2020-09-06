@@ -13,7 +13,7 @@ class WeekGrid extends StatelessWidget {
     final device = MediaQuery.of(context).size;
     return GestureDetector(
         onTap: (){
-            Navigator.of(context).pushNamed(WeekDayScreen.routeName);
+            Navigator.of(context).pushNamed(WeekDayScreen.routeName,arguments:day );
         },
           child: Container(
         child: Column(
