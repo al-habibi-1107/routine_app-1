@@ -7,11 +7,25 @@ class Subject {
   final Color color;
   final String note;
 
-  Subject(
-    this.subjectName,
-    this.teacher,
-    this.icon,
-    this.color,
+  Subject({
+    @required this.subjectName,
+    @required this.teacher,
+    @required this.icon,
+    @required this.color,
     this.note,
-  );
+  });
+}
+
+class Item {
+  final Subject subject;
+  final DateTime startTime;
+  final DateTime endTime;
+  final String day;
+
+  Item({
+    @required this.subject,
+    @required this.startTime,
+    @required this.endTime,
+    @required this.day,
+  });
 }
