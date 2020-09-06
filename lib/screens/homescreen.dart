@@ -22,8 +22,9 @@ class HomeScreen extends StatelessWidget {
     final device = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 01, 19, 1),
-        title: Text('MyClasses',textAlign: TextAlign.center,),
+        title: Text('MyClasses',textAlign: TextAlign.center,style: GoogleFonts.zillaSlab(),),
       ),
       body: Stack(
         children: [
