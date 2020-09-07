@@ -6,6 +6,7 @@ import 'dart:ui';
 import '../models/subject.dart';
 import '../models/items.dart';
 import '../widgets/itemtile.dart';
+import '../widgets/itemBottomSheet.dart';
 
 class WeekDayScreen extends StatefulWidget {
   static const routeName = '/week-day-screen';
@@ -27,6 +28,8 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
   bool isEmpty;
   String currentDay;
   bool first = true;
+
+  bool editmode = false;
   @override
   Widget build(BuildContext context) {
     if (first) {
@@ -59,12 +62,29 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
           title: Text('Timetable', style: GoogleFonts.zillaSlab()),
           backgroundColor: Color.fromRGBO(0, 01, 35, 1),
           centerTitle: true,
+          actions: <Widget>[
+            editmode
+                ? IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: () {
+                      setState(() {
+                        editmode = false;
+                      });
+                    },
+                  )
+                : IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      setState(() {
+                        editmode = true;
+                      });
+                    },
+                  ),
+          ],
           bottom: TabBar(
             onTap: (index) {
               currentTab = index;
               changeCurrentDay(index);
-
-              print(isEmpty);
             },
             isScrollable: true,
             tabs: [
@@ -95,24 +115,43 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
             ],
           ),
         ),
-        body: isEmpty
-            ? Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: device.width * 0.25,
-                  vertical: device.height * 0.25,
-                ),
-                child: Center(
-                    child: Image.asset(
-                  'assets/empty_msg.png',
-                  fit: BoxFit.scaleDown,
-                )),
-              )
-            : ListView.builder(
-                itemBuilder: (ctx, i) {
-                  return ItemTile(currentElements[i]);
-                },
-                itemCount: currentElements.length,
-              ),
+        body: Stack(
+          children: <Widget>[
+            isEmpty
+                ? Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: device.width * 0.25,
+                      vertical: device.height * 0.25,
+                    ),
+                    child: Center(
+                        child: Image.asset(
+                      'assets/empty_msg.png',
+                      fit: BoxFit.scaleDown,
+                    )),
+                  )
+                : ListView.builder(
+                    itemBuilder: (ctx, i) {
+                      return ItemTile(currentElements[i]);
+                    },
+                    itemCount: currentElements.length,
+                  ),
+            editmode
+                ? Positioned(
+                  bottom: device.height*0.03,
+                  right: device.width*0.05,
+                    child: FloatingActionButton(
+                      backgroundColor: Color.fromRGBO(0, 1, 35, 1),
+                      onPressed: () {
+                        showModalBottomSheet(context: context, builder: (context){
+                            return ItemBottomSheet() ;
+                        });
+                      },
+                      child: Icon(Icons.add),
+                    ),
+                  )
+                : Container()
+          ],
+        ),
       ),
     );
   }
