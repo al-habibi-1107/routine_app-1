@@ -119,37 +119,38 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: device.height * 0.14,
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: device.width * 0.04),
-                margin: EdgeInsets.symmetric(
-                    horizontal: device.width * 0.07,
-                    vertical: device.height * 0.01),
-                height: device.height * 0.1,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(253, 52, 75, 0.5),
-                      blurRadius: 10.0, // soften the shadow
-                      spreadRadius: 0.5, //extend the shadow
-                      offset: Offset(
-                        0.0, // Move to right 10  horizontally
-                        2.0, // Move to bottom 10 Vertically
-                      ),
-                    )
-                  ],
-                  border: Border.all(color: Color.fromRGBO(253, 52, 75, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Color.fromRGBO(253, 52, 75, 1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(WeekDayScreen.routeName,
-                            arguments: todayDay);
-                      },
-                      child: Column(
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(WeekDayScreen.routeName, arguments: todayDay);
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: device.width * 0.04),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: device.width * 0.07,
+                      vertical: device.height * 0.01),
+                  height: device.height * 0.1,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(253, 52, 75, 0.5),
+                        blurRadius: 10.0, // soften the shadow
+                        spreadRadius: 0.5, //extend the shadow
+                        offset: Offset(
+                          0.0, // Move to right 10  horizontally
+                          2.0, // Move to bottom 10 Vertically
+                        ),
+                      )
+                    ],
+                    border: Border.all(color: Color.fromRGBO(253, 52, 75, 1)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color.fromRGBO(253, 52, 75, 1),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -164,14 +165,15 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    // Image.asset('assets/calender.png')
-                    Icon(
-                      Icons.calendar_today,
-                      color: Colors.white,
-                      size: 46.0,
-                    ),
-                  ],
+
+                      // Image.asset('assets/calender.png')
+                      Icon(
+                        Icons.calendar_today,
+                        color: Colors.white,
+                        size: 46.0,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(

@@ -11,15 +11,10 @@ class ItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
-    final startTime = DateFormat.Hm().format(currentItem.startTime);
-    String am = DateFormat.H().format(currentItem.startTime);
-    int pm = int.parse(am);
-
-    if (pm >= 12) {
-      am = 'PM';
-    } else
-      am = 'AM';
-
+    String startTime = DateFormat.jm().format(currentItem.startTime);
+    String startTimeT=startTime.substring(0,5);
+    String am = startTime.substring(5);
+   
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: device.height * 0.01, horizontal: device.width * 0.04),
@@ -27,9 +22,10 @@ class ItemTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '$startTime\n Hrs',
+            '$startTimeT\n $am',
             style:
                 GoogleFonts.arvo(fontSize: 22, color: Colors.grey, shadows: []),
+                textAlign: TextAlign.center,
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: device.height * 0.01),
