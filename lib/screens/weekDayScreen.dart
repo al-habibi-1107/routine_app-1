@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'dart:ui';
 
 import '../models/subject.dart';
 import '../models/items.dart';
@@ -48,13 +49,15 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
       });
     }
 
+    final device = MediaQuery.of(context).size;
     return DefaultTabController(
       initialIndex: currentTab,
       length: weekDays.length,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('Timetable', style: GoogleFonts.zillaSlab()),
-          backgroundColor: Color.fromRGBO(0, 01, 19, 1),
+          backgroundColor: Color.fromRGBO(0, 01, 35, 1),
           centerTitle: true,
           bottom: TabBar(
             onTap: (index) {
@@ -65,21 +68,45 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
             },
             isScrollable: true,
             tabs: [
-              Text(weekDays[0],style: TextStyle(fontSize:20),),
-              Text(weekDays[1],style: TextStyle(fontSize:20),),
-              Text(weekDays[2],style: TextStyle(fontSize:20),),
-              Text(weekDays[3],style: TextStyle(fontSize:20),),
-              Text(weekDays[4],style: TextStyle(fontSize:20),),
-              Text(weekDays[5],style: TextStyle(fontSize:20),),
+              Text(
+                weekDays[0],
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                weekDays[1],
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                weekDays[2],
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                weekDays[3],
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                weekDays[4],
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                weekDays[5],
+                style: TextStyle(fontSize: 20),
+              ),
             ],
           ),
         ),
         body: isEmpty
-            ? Center(
-                child: Image.asset(
-                'assets/empty_msg.png',          
-                fit: BoxFit.fitHeight,
-              ))
+            ? Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: device.width * 0.25,
+                  vertical: device.height * 0.25,
+                ),
+                child: Center(
+                    child: Image.asset(
+                  'assets/empty_msg.png',
+                  fit: BoxFit.scaleDown,
+                )),
+              )
             : ListView.builder(
                 itemBuilder: (ctx, i) {
                   return ItemTile(currentElements[i]);
