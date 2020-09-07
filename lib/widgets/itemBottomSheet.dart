@@ -3,27 +3,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../screens/subjectInput.dart';
+
 class ItemBottomSheet extends StatefulWidget {
   @override
   _ItemBottomSheetState createState() => _ItemBottomSheetState();
 }
 
 class _ItemBottomSheetState extends State<ItemBottomSheet> {
-  
-
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay _time2 = TimeOfDay.now();
   DateTime _startTime = DateTime.now();
-  String _startTimeString = '';
+  String _startTimeString = 'Tap to add..';
   DateTime _endTime = DateTime.now();
-  String _endTimeString = '';
-
-  
+  String _endTimeString = 'Tap to add..';
+  Duration _duration = Duration(minutes: 10);
 
   void getStartTime(DateTime time) {
     setState(() {
       _startTime = time;
       _startTimeString = DateFormat.jm().format(_startTime);
+      if (_endTime.isAfter(_startTime))
+        _duration = _endTime.difference(_startTime);
     });
   }
 
@@ -43,6 +44,8 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
     setState(() {
       _endTime = time2;
       _endTimeString = DateFormat.jm().format(_endTime);
+
+      _duration = _endTime.difference(_startTime);
     });
   }
 
@@ -77,81 +80,96 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
               Text(
                 'Class',
                 style: GoogleFonts.roboto(fontSize: 20),
-              )
+              ),
+              IconButton(icon: Icon(Icons.add), onPressed: () {
+                Navigator.of(context).pushNamed(SubjectInput.routeName);
+              })
             ],
           ),
           Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(
-                'Starts At',
-                style: GoogleFonts.roboto(fontSize: 20),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    showPicker(
-                        context: context,
-                        value: _time,
-                        onChange: onTimeChanged,
-                        is24HrFormat: false,
-                        onChangeDateTime: (DateTime time) {
-                          getStartTime(time);
-                        }),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(color: Colors.grey)),
-                  width: device.width * 0.5,
-                  child: Text(
-                    '$_startTimeString',
-                    style: GoogleFonts.roboto(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  'Starts At',
+                  style: GoogleFonts.roboto(fontSize: 20),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      showPicker(
+                          context: context,
+                          value: _time,
+                          onChange: onTimeChanged,
+                          is24HrFormat: false,
+                          onChangeDateTime: (DateTime time) {
+                            getStartTime(time);
+                          }),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(color: Colors.grey)),
+                    width: device.width * 0.5,
+                    child: Text(
+                      '$_startTimeString',
+                      style: GoogleFonts.roboto(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(
-                'Ends At',
-                style: GoogleFonts.roboto(fontSize: 20),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    showPicker(
-                        context: context,
-                        value: _time2,
-                        onChange: onEndTimeChanged,
-                        is24HrFormat: false,
-                        onChangeDateTime: (DateTime time) {
-                          getEndTime(time);
-                        }),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(color: Colors.grey)),
-                  width: device.width * 0.5,
-                  child: Text(
-                    '$_endTimeString',
-                    style: GoogleFonts.roboto(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  'Ends At',
+                  style: GoogleFonts.roboto(fontSize: 20),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      showPicker(
+                          context: context,
+                          value: _time2,
+                          onChange: onEndTimeChanged,
+                          is24HrFormat: false,
+                          onChangeDateTime: (DateTime time) {
+                            getEndTime(time);
+                          }),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    width: device.width * 0.23,
+                    child: Text(
+                      '$_endTimeString',
+                      style: GoogleFonts.roboto(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-              ),
-              
-            ],
+                Text(
+                  '${_duration.inMinutes} min',
+                  style: GoogleFonts.roboto(fontSize: 18),
+                )
+              ],
+            ),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './screens/homescreen.dart';
 import './models/items.dart';
 import './screens/weekDayScreen.dart';
+import './screens/subjectInput.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           WeekDayScreen.routeName: (ctx) => WeekDayScreen(),
+          SubjectInput.routeName : (ctx) => SubjectInput(),
         },
       ),
     );
