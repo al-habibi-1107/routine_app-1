@@ -55,6 +55,7 @@ flutter:
     - assets/Friday.png
     - assets/Saturday.png
     - assets/calender.png
+    - assets/empty_msg.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

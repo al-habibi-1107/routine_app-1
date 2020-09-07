@@ -49,7 +49,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
     }
 
     return DefaultTabController(
-       initialIndex: currentTab,
+      initialIndex: currentTab,
       length: weekDays.length,
       child: Scaffold(
         appBar: AppBar(
@@ -65,17 +65,21 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
             },
             isScrollable: true,
             tabs: [
-              Text(weekDays[0]),
-              Text(weekDays[1]),
-              Text(weekDays[2]),
-              Text(weekDays[3]),
-              Text(weekDays[4]),
-              Text(weekDays[5]),
+              Text(weekDays[0],style: TextStyle(fontSize:20),),
+              Text(weekDays[1],style: TextStyle(fontSize:20),),
+              Text(weekDays[2],style: TextStyle(fontSize:20),),
+              Text(weekDays[3],style: TextStyle(fontSize:20),),
+              Text(weekDays[4],style: TextStyle(fontSize:20),),
+              Text(weekDays[5],style: TextStyle(fontSize:20),),
             ],
           ),
         ),
         body: isEmpty
-            ? Center(child: Text('empty day'))
+            ? Center(
+                child: Image.asset(
+                'assets/empty_msg.png',          
+                fit: BoxFit.fitHeight,
+              ))
             : ListView.builder(
                 itemBuilder: (ctx, i) {
                   return ItemTile(currentElements[i]);
