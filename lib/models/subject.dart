@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class Subject {
   final String subjectName;
   final String teacher;
-  final Icon icon;
+  final IconData iconpara;
   final Color color;
   final String note;
 
   Subject({
     @required this.subjectName,
     @required this.teacher,
-    @required this.icon,
+    @required this.iconpara,
     @required this.color,
     this.note,
   });

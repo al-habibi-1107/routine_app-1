@@ -3,10 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/grid.dart';
+import '../screens/weekDayScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   final todayDate = DateFormat.yMMMMEEEEd().format(DateTime.now());
-
+  final todayDay= DateFormat.EEEE().format(DateTime.now());
+  
   final List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
     ['Tuesday', Icon(Icons.tag_faces)],
@@ -18,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(todayDay);
     final device = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -141,20 +144,25 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'TODAY',
-                          style: GoogleFonts.montserrat(
-                              color: Colors.white, fontSize: 40),
-                        ),
-                        Text(
-                          todayDate,
-                          style: GoogleFonts.arvo(color: Colors.white),
-                        ),
-                      ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed(WeekDayScreen.routeName,arguments: todayDay );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'TODAY',
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 40),
+                          ),
+                          Text(
+                            todayDate,
+                            style: GoogleFonts.arvo(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                     // Image.asset('assets/calender.png')
                     Icon(
@@ -195,4 +203,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

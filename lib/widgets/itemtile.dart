@@ -24,15 +24,41 @@ class ItemTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: device.height * 0.01, horizontal: device.width * 0.04),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             '$startTime\n  $am',
-            style: GoogleFonts.autourOne(fontSize: 20),
+            style: GoogleFonts.autourOne(fontSize: 20, color: Colors.grey),
           ),
           Container(
-            height: device.height*0.1,
-            width: device.width*0.75,
-            color:currentItem.subject.color
+            padding: EdgeInsets.only(left:device.width*0.05),
+            decoration: BoxDecoration(
+                color: currentItem.subject.color,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            height: device.height * 0.1,
+            width: device.width * 0.75,
+            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Icon(
+                currentItem.subject.iconpara,
+                size: device.height * 0.05,
+              ),
+              SizedBox(width: device.width*0.05,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '${currentItem.subject.subjectName}',
+                    style: GoogleFonts.lato(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${currentItem.subject.teacher}',
+                    style: GoogleFonts.lato(fontSize: 20),
+                  ),
+                ],
+              )
+            ]),
           )
         ],
       ),

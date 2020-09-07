@@ -8,8 +8,8 @@ class Items with ChangeNotifier {
       subject: Subject(
         subjectName: 'Maths',
         teacher: 'DRM',
-        icon: Icon(Icons.tag_faces),
-        color: Colors.brown,
+        iconpara: Icons.add,
+        color: Colors.purpleAccent,
       ),
       startTime: DateTime.now(),
       endTime: DateTime.now().add(Duration(minutes:30)),
@@ -19,11 +19,22 @@ class Items with ChangeNotifier {
       subject: Subject(
         subjectName: 'DCLD',
         teacher: 'MDR',
-        icon: Icon(Icons.tag_faces),
-        color: Colors.pink,
+        iconpara: Icons.tag_faces,
+        color: Colors.lime,
       ),
       startTime: DateTime.now(),
       endTime: DateTime.now().add(Duration(minutes:30)),
+      day: 'Tuesday'
+    ),
+    Item(
+      subject: Subject(
+        subjectName: 'COA',
+        teacher: 'MDR',
+        iconpara: Icons.tag_faces,
+        color: Colors.lightGreen,
+      ),
+      startTime: DateTime.now().add(Duration(minutes: 15 )),
+      endTime: DateTime.now().add(Duration(hours: 1)),
       day: 'Tuesday'
     ),
   ];
