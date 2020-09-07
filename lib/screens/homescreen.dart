@@ -7,8 +7,8 @@ import '../screens/weekDayScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   final todayDate = DateFormat.yMMMMEEEEd().format(DateTime.now());
-  final todayDay= DateFormat.EEEE().format(DateTime.now());
-  
+  final todayDay = DateFormat.EEEE().format(DateTime.now());
+
   final List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
     ['Tuesday', Icon(Icons.tag_faces)],
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(0, 01, 25, 1),
+        backgroundColor: Color.fromRGBO(0, 01, 35, 1),
         title: Text(
           'MyClasses',
           textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(0, 01, 25, 0.2),
+                  color: Color.fromRGBO(0, 01, 35, 0.5),
                   blurRadius: 5.0, // soften the shadow
                   spreadRadius: 1.0, //extend the shadow
                   offset: Offset(
@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 )
               ],
-              color: Color.fromRGBO(0, 01, 25, 1),
+              color: Color.fromRGBO(0, 01, 35, 1),
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(45),
               ),
@@ -145,8 +145,9 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pushNamed(WeekDayScreen.routeName,arguments: todayDay );
+                      onTap: () {
+                        Navigator.of(context).pushNamed(WeekDayScreen.routeName,
+                            arguments: todayDay);
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

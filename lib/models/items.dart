@@ -5,38 +5,35 @@ import './subject.dart';
 class Items with ChangeNotifier {
   final List<Item> _items = [
     Item(
-      subject: Subject(
-        subjectName: 'Maths',
-        teacher: 'DRM',
-        iconpara: Icons.add,
-        color: Colors.purpleAccent,
-      ),
-      startTime: DateTime.now(),
-      endTime: DateTime.now().add(Duration(minutes:30)),
-      day: 'Monday'
-    ),
+        subject: Subject(
+          subjectName: 'Maths',
+          teacher: 'DRM',
+          iconpara: Icons.functions,
+          color: Colors.purpleAccent,
+        ),
+        startTime: DateTime.now(),
+        endTime: DateTime.now().add(Duration(minutes: 30)),
+        day: 'Monday'),
     Item(
-      subject: Subject(
-        subjectName: 'DCLD',
-        teacher: 'MDR',
-        iconpara: Icons.tag_faces,
-        color: Colors.lime,
-      ),
-      startTime: DateTime.now(),
-      endTime: DateTime.now().add(Duration(minutes:30)),
-      day: 'Tuesday'
-    ),
+        subject: Subject(
+          subjectName: 'DCLD',
+          teacher: 'MDR',
+          iconpara: Icons.tag_faces,
+          color: Colors.lime,
+        ),
+        startTime: DateTime.now(),
+        endTime: DateTime.now().add(Duration(minutes: 30)),
+        day: 'Tuesday'),
     Item(
-      subject: Subject(
-        subjectName: 'COA',
-        teacher: 'MDR',
-        iconpara: Icons.tag_faces,
-        color: Colors.lightGreen,
-      ),
-      startTime: DateTime.now().add(Duration(minutes: 15 )),
-      endTime: DateTime.now().add(Duration(hours: 1)),
-      day: 'Tuesday'
-    ),
+        subject: Subject(
+          subjectName: 'COA',
+          teacher: 'MDR',
+          iconpara: Icons.tag_faces,
+          color: Colors.lightGreen,
+        ),
+        startTime: DateTime.now().add(Duration(minutes: 15)),
+        endTime: DateTime.now().add(Duration(hours: 1)),
+        day: 'Tuesday'),
   ];
 
   get items {
@@ -44,10 +41,9 @@ class Items with ChangeNotifier {
   }
 
   List<Item> getDayItems(String day) {
-   List<Item>list= _items.where((element) => element.day==day).toList();
-     //print(list[0].day);
-     
-     return list;
-     
+    List<Item> list = _items.where((element) => element.day == day).toList();
+    //print(list[0].day);
+
+    return list;
   }
 }
