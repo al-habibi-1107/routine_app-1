@@ -18,7 +18,7 @@ class Items with ChangeNotifier {
         subject: Subject(
           subjectName: 'DCLD',
           teacher: 'MDR',
-          iconpara: Icons.tag_faces,
+          iconpara: Icons.wb_iridescent,
           color: Colors.lime,
         ),
         startTime: DateTime.now(),
@@ -28,7 +28,7 @@ class Items with ChangeNotifier {
         subject: Subject(
           subjectName: 'COA',
           teacher: 'MDR',
-          iconpara: Icons.tag_faces,
+          iconpara: Icons.laptop_mac,
           color: Colors.lightGreen,
         ),
         startTime: DateTime.now().add(Duration(minutes: 15)),

@@ -60,7 +60,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('Timetable', style: GoogleFonts.zillaSlab()),
-          backgroundColor: Color.fromRGBO(0, 01, 35, 1),
+          backgroundColor: Color.fromRGBO(0, 01, 30, 1),
           centerTitle: true,
           actions: <Widget>[
             editmode
@@ -137,14 +137,16 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                   ),
             editmode
                 ? Positioned(
-                  bottom: device.height*0.03,
-                  right: device.width*0.05,
+                    bottom: device.height * 0.03,
+                    right: device.width * 0.05,
                     child: FloatingActionButton(
                       backgroundColor: Color.fromRGBO(0, 1, 35, 1),
                       onPressed: () {
-                        showModalBottomSheet(context: context, builder: (context){
-                            return ItemBottomSheet() ;
-                        });
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return ItemBottomSheet();
+                            });
                       },
                       child: Icon(Icons.add),
                     ),
