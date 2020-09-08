@@ -14,8 +14,35 @@ class _SubjectInputState extends State<SubjectInput> {
 
   String _className = 'Class Name';
   String _teacher = '';
-  IconData _icon;
+  IconData _icon = Icons.android;
   Color _color = Colors.white;
+
+  List<IconData> iconList = [
+    Icons.add,
+    Icons.subscriptions,
+    Icons.tablet_android,
+    Icons.theaters,
+    Icons.time_to_leave,
+    Icons.track_changes,
+    Icons.people_outline,
+    Icons.mode_edit,
+    Icons.monetization_on,
+    Icons.graphic_eq,
+    Icons.functions,
+    Icons.headset,
+    Icons.import_contacts,
+    Icons.kitchen,
+    Icons.language,
+    Icons.local_library,
+    Icons.map,
+    Icons.memory,
+    Icons.movie_filter,
+    Icons.music_video,
+    Icons.public,
+    Icons.g_translate,
+    Icons.wifi_tethering,
+    Icons.computer,
+  ];
 
   void changeColor(Color newcolor) {
     setState(() {
@@ -45,18 +72,18 @@ class _SubjectInputState extends State<SubjectInput> {
                     color: _color, borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   leading: Icon(
-                    Icons.android,
+                    _icon,
                     color: Colors.black,
                     size: 48,
                   ),
                   title: _className.length == 0
                       ? Text(
                           'Class Name',
-                          style: GoogleFonts.roboto(fontSize: 20),
+                          style: GoogleFonts.arvo(fontSize: 20),
                         )
                       : Text(
                           '$_className',
-                          style: GoogleFonts.roboto(fontSize: 20),
+                          style: GoogleFonts.arvo(fontSize: 20),
                         ),
                   subtitle: _teacher.length == 0
                       ? Text(
@@ -143,9 +170,31 @@ class _SubjectInputState extends State<SubjectInput> {
                       showDialog(
                         context: context,
                         child: AlertDialog(
-                          title: Text('Pick a color'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Pick a color',
+                                style: GoogleFonts.arvo(),
+                              ),
+                              FloatingActionButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Icon(Icons.check),
+                                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
+                              ),
+                            ],
+                          ),
                           content: SingleChildScrollView(
                             child: BlockPicker(
+                              //availableColors: [],
                               pickerColor: _color,
                               onColorChanged: changeColor,
                             ),
@@ -158,29 +207,77 @@ class _SubjectInputState extends State<SubjectInput> {
                       height: device.height * 0.08,
                       width: device.width,
                       color: Colors.white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Icon(Icons.color_lens, color: Colors.black),
-                          Container(
-                           
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: _color,
-                              border:Border.all(color:Colors.black)
-                            ),
-                              child: Text(
-                            'Tap to Choose.',
-                            style: GoogleFonts.breeSerif(fontSize: 20),
-                          ))
-                        ],
+                      child: ListTile(
+                        leading: Icon(Icons.color_lens, color: Colors.black),
+                        title: Text(
+                          'Tap to Choose.',
+                          style: GoogleFonts.breeSerif(
+                              fontSize: 20, color: Colors.grey),
+                        ),
+                        trailing: CircleAvatar(
+                          backgroundColor: _color,
+                        ),
                       ),
                     ),
                   ),
-                  Divider()
+                  Divider(),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        child: AlertDialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          scrollable: true,
+                          title: Text('Choose Icon'),
+                          content: Container(
+                            height: device.height * 0.3,
+                            width: device.width * 0.5,
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 5,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 20,
+                                      childAspectRatio: 3 / 2),
+                              itemBuilder: (ctx, i) {
+                                return IconButton(
+                                    icon: Icon(
+                                      iconList[i],
+                                      size: 30,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _icon = iconList[i];
+                                      });
+                                      Navigator.of(context).pop();
+                                    });
+                              },
+                              itemCount: iconList.length,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      height: device.height * 0.08,
+                      width: device.width + 0.5,
+                      child: ListTile(
+                        leading: Icon(_icon, color: Colors.black),
+                        title: Text(
+                          'Select Icon',
+                          style: GoogleFonts.breeSerif(
+                              fontSize: 20, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Divider(),
                 ],
               ),
               key: _formKey),
+          FloatingActionButton(onPressed: null),
         ],
       ),
     );
