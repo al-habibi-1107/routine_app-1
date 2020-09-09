@@ -56,4 +56,10 @@ class Items with ChangeNotifier {
       iconpara: icon,
     );
   }
+
+  void addItem(Subject newSubject,DateTime start,DateTime end,String day){
+    Item newItem=Item(subject: newSubject, startTime: start, endTime: end, day: day);
+
+    _items.add(newItem);
+  }
 }
