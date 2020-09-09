@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
+import '../models/items.dart';
+import '../models/subject.dart';
 
 class SubjectInput extends StatefulWidget {
   static const routeName = '/subject-input';
@@ -48,6 +52,20 @@ class _SubjectInputState extends State<SubjectInput> {
     setState(() {
       _color = newcolor;
     });
+  }
+
+  void onFormSubmit() {
+    final isValid = _formKey.currentState.validate();
+    if (isValid) {
+      _formKey.currentState.save();
+      Subject currentSubject = Provider.of<Items>(context,listen: false).makeSubject(
+        _className,
+        _teacher,
+        _icon,
+        _color,
+      );
+      Navigator.of(context).pop(currentSubject);
+    }
   }
 
   @override
@@ -277,7 +295,10 @@ class _SubjectInputState extends State<SubjectInput> {
                 ],
               ),
               key: _formKey),
-          FloatingActionButton(onPressed: null),
+          Container(
+            margin: EdgeInsets.only(top:device.height*0.15,left:device.width*0.75),
+            child: FloatingActionButton(onPressed: onFormSubmit,child: Icon(Icons.check),),
+          ),
         ],
       ),
     );
