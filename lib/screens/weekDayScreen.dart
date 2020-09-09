@@ -145,7 +145,10 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                         showModalBottomSheet(
                             context: context,
                             builder: (context) {
-                              return ItemBottomSheet();
+                              return ItemBottomSheet(currentDay);
+                            });
+                            setState(() {
+                              
                             });
                       },
                       child: Icon(Icons.add),

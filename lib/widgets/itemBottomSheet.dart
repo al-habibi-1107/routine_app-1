@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-import '../screens/subjectInput.dart';
 import '../screens/subjectInput.dart';
 import '../models/subject.dart';
+import '../models/items.dart';
 
 class ItemBottomSheet extends StatefulWidget {
+  final String currentDay;
+  ItemBottomSheet(this.currentDay);
+
   @override
   _ItemBottomSheetState createState() => _ItemBottomSheetState();
 }
 
 class _ItemBottomSheetState extends State<ItemBottomSheet> {
   Subject thisSubject;
+
+  bool isSubject = false;
 
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay _time2 = TimeOfDay.now();
@@ -53,10 +59,29 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
     });
   }
 
+  void createItem() {
+    if (_duration.isNegative || _duration == Duration(minutes: 10)) {
+      showDialog(
+        context: context,
+        child: AlertDialog(
+          content: Text('Please check the Start and End Class times'),
+        ),
+      );
+    } else {
+      Provider.of<Items>(context, listen: false)
+          .addItem(thisSubject, _startTime, _endTime, widget.currentDay);
+      Navigator.of(context).pop();
+      setState(() {
+        
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     return Container(
+      height: device.height * 0.4,
       margin: EdgeInsets.symmetric(vertical: device.height * 0.015),
       child: Column(
         children: [
@@ -72,14 +97,16 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
               ),
               FloatingActionButton(
                 elevation: 5,
-                onPressed: () {},
+                onPressed: () {
+                  createItem();
+                },
                 child: Icon(Icons.check),
               )
             ],
           ),
           Divider(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text(
                 'Class',
@@ -94,8 +121,32 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                       builder: (context) => SubjectInput(),
                     ),
                   );
+                  setState(() {
+                    isSubject = true;
+                  });
                   print(thisSubject.subjectName);
                 },
+              ),
+              Container(
+                width: device.width * 0.4,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  color: isSubject ? thisSubject.color : Colors.white,
+                ),
+                child: ListTile(
+                  title: isSubject
+                      ? Text('${thisSubject.subjectName}')
+                      : Text('Physics'),
+                  leading: isSubject
+                      ? Icon(
+                          thisSubject.iconpara,
+                          color: Colors.black,
+                        )
+                      : Icon(
+                          Icons.book,
+                          color: Colors.black,
+                        ),
+                ),
               ),
             ],
           ),
