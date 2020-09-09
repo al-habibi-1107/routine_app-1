@@ -4,6 +4,8 @@ import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../screens/subjectInput.dart';
+import '../screens/subjectInput.dart';
+import '../models/subject.dart';
 
 class ItemBottomSheet extends StatefulWidget {
   @override
@@ -11,6 +13,8 @@ class ItemBottomSheet extends StatefulWidget {
 }
 
 class _ItemBottomSheetState extends State<ItemBottomSheet> {
+  Subject thisSubject;
+
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay _time2 = TimeOfDay.now();
   DateTime _startTime = DateTime.now();
@@ -81,9 +85,18 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                 'Class',
                 style: GoogleFonts.roboto(fontSize: 20),
               ),
-              IconButton(icon: Icon(Icons.add), onPressed: () {
-                Navigator.of(context).pushNamed(SubjectInput.routeName);
-              })
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () async {
+                  thisSubject = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SubjectInput(),
+                    ),
+                  );
+                  print(thisSubject.subjectName);
+                },
+              ),
             ],
           ),
           Divider(),

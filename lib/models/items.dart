@@ -46,4 +46,14 @@ class Items with ChangeNotifier {
 
     return list;
   }
+
+  Subject makeSubject(
+      String className, String teacher, IconData icon, Color color) {
+    return Subject(
+      color: color,
+      subjectName: className,
+      teacher: teacher,
+      iconpara: icon,
+    );
+  }
 }
