@@ -147,9 +147,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                             builder: (context) {
                               return ItemBottomSheet(currentDay);
                             });
-                            setState(() {
-                              
-                            });
+                            
                       },
                       child: Icon(Icons.add),
                     ),

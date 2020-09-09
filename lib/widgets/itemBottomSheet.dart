@@ -71,9 +71,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
       Provider.of<Items>(context, listen: false)
           .addItem(thisSubject, _startTime, _endTime, widget.currentDay);
       Navigator.of(context).pop();
-      setState(() {
-        
-      });
+     
     }
   }
 
