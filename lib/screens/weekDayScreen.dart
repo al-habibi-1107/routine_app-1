@@ -131,7 +131,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                   )
                 : ListView.builder(
                     itemBuilder: (ctx, i) {
-                      return ItemTile(currentElements[i]);
+                      return ItemTile(currentElements[i],editmode);
                     },
                     itemCount: currentElements.length,
                   ),
@@ -147,9 +147,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                             builder: (context) {
                               return ItemBottomSheet(currentDay);
                             });
-                            setState(() {
-                              
-                            });
+                            
                       },
                       child: Icon(Icons.add),
                     ),
