@@ -10,17 +10,22 @@ import '../models/items.dart';
 
 class ItemBottomSheet extends StatefulWidget {
   final String currentDay;
+  
+  
   ItemBottomSheet(this.currentDay);
+  
+  
 
   @override
   _ItemBottomSheetState createState() => _ItemBottomSheetState();
 }
 
 class _ItemBottomSheetState extends State<ItemBottomSheet> {
+
   Subject thisSubject;
-
+  
   bool isSubject = false;
-
+  bool isPresent=false;
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay _time2 = TimeOfDay.now();
   DateTime _startTime = DateTime.now();
