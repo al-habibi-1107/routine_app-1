@@ -17,10 +17,10 @@ class Subject {
 }
 
 class Item {
-  final Subject subject;
-  final DateTime startTime;
-  final DateTime endTime;
-  final String day;
+  Subject subject;
+  DateTime startTime;
+  DateTime endTime;
+  String day;
 
   Item({
     @required this.subject,
