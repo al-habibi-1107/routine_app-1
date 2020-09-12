@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 
 import '../models/subject.dart';
 
@@ -31,7 +30,7 @@ class _EditSubjectState extends State<EditSubject> {
       _startTime = currentItem.startTime;
       _startString = DateFormat.jm().format(_startTime);
       _endTime = currentItem.endTime;
-      _endString= DateFormat.jm().format(_startTime);
+      _endString = DateFormat.jm().format(_startTime);
 
       flag = false;
     }
@@ -149,9 +148,7 @@ class _EditSubjectState extends State<EditSubject> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          DateTimePicker(
-                            type: DateTimePickerType.time,
-                          );
+                           
                         },
                         child: Container(
                           padding: EdgeInsets.all(4),
