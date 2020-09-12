@@ -58,7 +58,8 @@ class _SubjectInputState extends State<SubjectInput> {
     final isValid = _formKey.currentState.validate();
     if (isValid) {
       _formKey.currentState.save();
-      Subject currentSubject = Provider.of<Items>(context,listen: false).makeSubject(
+      Subject currentSubject =
+          Provider.of<Items>(context, listen: false).makeSubject(
         _className,
         _teacher,
         _icon,
@@ -296,8 +297,12 @@ class _SubjectInputState extends State<SubjectInput> {
               ),
               key: _formKey),
           Container(
-            margin: EdgeInsets.only(top:device.height*0.15,left:device.width*0.75),
-            child: FloatingActionButton(onPressed: onFormSubmit,child: Icon(Icons.check),),
+            margin: EdgeInsets.only(
+                top: device.height * 0.15, left: device.width * 0.75),
+            child: FloatingActionButton(
+              onPressed: onFormSubmit,
+              child: Icon(Icons.check),
+            ),
           ),
         ],
       ),

@@ -131,7 +131,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                   )
                 : ListView.builder(
                     itemBuilder: (ctx, i) {
-                      return ItemTile(currentElements[i],editmode);
+                      return ItemTile(currentElements[i], editmode);
                     },
                     itemCount: currentElements.length,
                   ),
@@ -140,14 +140,13 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                     bottom: device.height * 0.03,
                     right: device.width * 0.05,
                     child: FloatingActionButton(
-                      backgroundColor: Color.fromRGBO(0, 1, 35, 1),
+                      backgroundColor: Color.fromRGBO(110, 149, 252, 1),
                       onPressed: () {
                         showModalBottomSheet(
                             context: context,
                             builder: (context) {
                               return ItemBottomSheet(currentDay);
                             });
-                            
                       },
                       child: Icon(Icons.add),
                     ),
