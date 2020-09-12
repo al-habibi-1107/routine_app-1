@@ -52,7 +52,7 @@ class WeekGrid extends StatelessWidget {
             //   end: Alignment.bottomCenter,
             // ),
             borderRadius: BorderRadius.all(Radius.circular(17))),
-        height: device.height * 0.12,
+        height: device.height * 0.14,
         width: device.width * 0.27,
       ),
     );

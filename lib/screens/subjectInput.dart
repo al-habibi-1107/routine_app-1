@@ -49,6 +49,9 @@ class _SubjectInputState extends State<SubjectInput> {
   ];
 
   void changeColor(Color newcolor) {
+    if (newcolor == null) {
+      return;
+    }
     setState(() {
       _color = newcolor;
     });
@@ -63,7 +66,7 @@ class _SubjectInputState extends State<SubjectInput> {
         _className,
         _teacher,
         _icon,
-        _color,
+        Colors.white,
       );
       Navigator.of(context).pop(currentSubject);
     }
@@ -73,6 +76,7 @@ class _SubjectInputState extends State<SubjectInput> {
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Create Class'),
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
