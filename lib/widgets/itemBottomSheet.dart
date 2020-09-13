@@ -134,7 +134,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     catch(error){
                       throw error;
                     }
-                    if(thisSubject.subjectName==null){
+                    if(thisSubject==null){
                       isSubject=false;
                     }
                     else{

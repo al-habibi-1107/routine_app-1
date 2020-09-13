@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../models/subject.dart';
+import '../models/items.dart';
 
 class EditSubject extends StatefulWidget {
   static const routeName = 'edit-screen';
@@ -19,6 +21,42 @@ class _EditSubjectState extends State<EditSubject> {
   String _startString;
   DateTime _endTime;
   String _endString;
+  
+
+  Future<TimeOfDay> _selectTime(BuildContext context) {
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(
+        hour: _startTime.hour,
+        minute: _startTime.minute,
+      ),
+    );
+  }
+
+  Future<TimeOfDay> _selectendTime(BuildContext context) {
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(
+        hour: _endTime.hour,
+        minute: _endTime.minute,
+      ),
+    );
+  }
+
+  void _saveForm(){
+
+    final isValid=_formKey.currentState.validate();
+
+    if(isValid){
+      _formKey.currentState.save();
+
+      
+
+    }
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Item currentItem = ModalRoute.of(context).settings.arguments;
@@ -31,7 +69,7 @@ class _EditSubjectState extends State<EditSubject> {
       _startString = DateFormat.jm().format(_startTime);
       _endTime = currentItem.endTime;
       _endString = DateFormat.jm().format(_startTime);
-
+      
       flag = false;
     }
 
@@ -147,8 +185,23 @@ class _EditSubjectState extends State<EditSubject> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                           
+                        onTap: () async {
+                          final selectedTime = await _selectTime(context);
+                          if (selectedTime != null) {
+                            final now = DateTime.now();
+                            setState(
+                              () {
+                                _startTime = DateTime(
+                                    now.year,
+                                    now.month,
+                                    now.day,
+                                    selectedTime.hour,
+                                    selectedTime.minute);
+                                _startString =
+                                    DateFormat.jm().format(_startTime);
+                              },
+                            );
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.all(4),
@@ -167,27 +220,66 @@ class _EditSubjectState extends State<EditSubject> {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        height: device.height * 0.08,
-                        width: device.width * 0.4,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Text('End Time:'),
-                              Text('$_endString')
-                            ],
+                      GestureDetector(
+                        onTap: () async {
+                          final selectedTime = await _selectendTime(context);
+                          if (selectedTime != null) {
+                            final now = DateTime.now();
+
+                            setState(() {
+                              _endTime = DateTime(
+                                now.year,
+                                now.month,
+                                now.day,
+                                selectedTime.hour,
+                                selectedTime.minute,
+                              );
+                              _endString = DateFormat.jm().format(_endTime);
+                            });
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          height: device.height * 0.08,
+                          width: device.width * 0.4,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Text('End Time:'),
+                                Text('$_endString')
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              FloatingActionButton(
+                onPressed: () {
+                    Provider.of<Items>(context).deleteItem(currentItem);
+                    Navigator.of(context).pop();
+                },
+                child: Icon(Icons.delete),
+                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
+              ),
+              FloatingActionButton(
+                onPressed: () {
+
+                },
+                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
+                child: Icon(Icons.check),
+              ),
+            ],
           ),
         ],
       ),
