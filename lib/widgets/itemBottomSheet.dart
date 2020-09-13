@@ -79,7 +79,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     return Container(
-      height: device.height * 0.4,
+      
       margin: EdgeInsets.symmetric(vertical: device.height * 0.015),
       child: Column(
         children: [
@@ -122,16 +122,28 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     color: Colors.white,
                   ),
                   onPressed: () async {
+                    try{
+
                     thisSubject = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SubjectInput(),
                       ),
                     );
+                    }
+                    catch(error){
+                      throw error;
+                    }
+                    if(thisSubject==null){
+                      isSubject=false;
+                    }
+                    else{
+
                     setState(() {
                       isSubject = true;
                     });
-                    print(thisSubject.subjectName);
+                    }
+                    
                   },
                 ),
               ),
@@ -140,6 +152,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Colors.grey),
+                 
                   color: isSubject ? thisSubject.color : Colors.white,
                 ),
                 child: ListTile(

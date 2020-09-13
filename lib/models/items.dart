@@ -61,5 +61,18 @@ class Items with ChangeNotifier {
     Item newItem=Item(subject: newSubject, startTime: start, endTime: end, day: day);
 
     _items.add(newItem);
+    notifyListeners();
   }
+
+  void deleteItem(Item newItem){
+    _items.remove(newItem);
+  notifyListeners();
+  }
+
+  void editItem(){
+
+
+    
+  }
+
 }

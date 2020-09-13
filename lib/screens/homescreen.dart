@@ -88,6 +88,7 @@ class HomeScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Container(
+                    
                     margin:
                         EdgeInsets.symmetric(horizontal: device.width * 0.04),
                     child: Row(
