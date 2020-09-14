@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Subject {
-  final String subjectName;
-  final String teacher;
-  final IconData iconpara;
-  final Color color;
-  final String note;
+   String subjectName;
+   String teacher;
+   IconData iconpara;
+   Color color;
+   String note;
 
   Subject({
     @required this.subjectName,
@@ -17,12 +17,14 @@ class Subject {
 }
 
 class Item {
+ String id;
   Subject subject;
   DateTime startTime;
   DateTime endTime;
   String day;
 
   Item({
+   @required this.id,
     @required this.subject,
     @required this.startTime,
     @required this.endTime,

@@ -43,13 +43,13 @@ class _EditSubjectState extends State<EditSubject> {
     );
   }
 
-  void _saveForm(){
+  void _saveForm(Item currentItem){
 
     final isValid=_formKey.currentState.validate();
 
     if(isValid){
       _formKey.currentState.save();
-
+      Provider.of<Items>(context,listen: false).editItem(currentItem.id, _subject, _teacher, _startTime, _endTime);
       
 
     }
@@ -264,20 +264,22 @@ class _EditSubjectState extends State<EditSubject> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              FloatingActionButton(
+              IconButton(
+                splashColor: Colors.yellow,
                 onPressed: () {
-                    Provider.of<Items>(context).deleteItem(currentItem);
+                    Provider.of<Items>(context,listen: false ).deleteItem(currentItem);
                     Navigator.of(context).pop();
                 },
-                child: Icon(Icons.delete),
-                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
+                icon: Icon(Icons.delete),
+               
               ),
-              FloatingActionButton(
+              IconButton(
                 onPressed: () {
-
+                  _saveForm(currentItem);
+                  Navigator.of(context).pop();
                 },
-                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
-                child: Icon(Icons.check),
+                splashColor: Colors.yellow,
+                icon: Icon(Icons.check),
               ),
             ],
           ),
