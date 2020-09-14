@@ -8,6 +8,7 @@ import './screens/subjectInput.dart';
 import './screens/editsubject.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
