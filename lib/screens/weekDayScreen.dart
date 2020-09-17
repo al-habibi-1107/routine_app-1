@@ -16,6 +16,7 @@ class WeekDayScreen extends StatefulWidget {
 }
 
 class _WeekDayScreenState extends State<WeekDayScreen> {
+  // A list of days 
   final List<String> weekDays = [
     'Monday',
     'Tuesday',
@@ -24,6 +25,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
     'Friday',
     'Saturday',
   ];
+  // Variable to contain the current tab which is being viewed
   int currentTab = 0;
   bool isEmpty;
   String currentDay;
@@ -32,16 +34,21 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
   bool editmode = false;
   @override
   Widget build(BuildContext context) {
+    // This code runs only for once , ang initialises the current Day
     if (first) {
       currentDay = ModalRoute.of(context).settings.arguments;
       first = false;
     }
-
+    // Get the current Tab with the help of current day
     currentTab = weekDays.indexWhere((element) => element == currentDay);
+    // Get all the items in the current Day via the Provider
+    // in the Items model
     List<Item> currentElements =
         Provider.of<Items>(context).getDayItems(currentDay);
     isEmpty = currentElements.isEmpty;
-
+    
+    // A funtion to change the current Day in the tab and
+    // to get all elements in the day
     void changeCurrentDay(int index) {
       setState(() {
         currentDay = weekDays[index];
@@ -53,6 +60,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
     }
 
     final device = MediaQuery.of(context).size;
+    // Returns a Tab Bar with Subjects
     return DefaultTabController(
       initialIndex: currentTab,
       length: weekDays.length,
@@ -62,6 +70,8 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
           title: Text('Timetable', style: GoogleFonts.zillaSlab()),
           backgroundColor: Color.fromRGBO(0, 01, 30, 1),
           centerTitle: true,
+          // When The button is tapped , the
+          // edit mode icons are shown to add new items
           actions: <Widget>[
             editmode
                 ? IconButton(
@@ -81,12 +91,15 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                     },
                   ),
           ],
+          // Add a tabBar at the bottom of app bar
           bottom: TabBar(
             onTap: (index) {
               currentTab = index;
               changeCurrentDay(index);
             },
             isScrollable: true,
+            // representing all the days
+            // in the scrollabe tab
             tabs: [
               Text(
                 weekDays[0],
@@ -117,6 +130,7 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
         ),
         body: Stack(
           children: <Widget>[
+            // When there are no elements a image is shown
             isEmpty
                 ? Container(
                     margin: EdgeInsets.symmetric(
@@ -129,12 +143,15 @@ class _WeekDayScreenState extends State<WeekDayScreen> {
                       fit: BoxFit.scaleDown,
                     )),
                   )
+                  // A list of Items of Custom Item Tile is made
                 : ListView.builder(
                     itemBuilder: (ctx, i) {
                       return ItemTile(currentElements[i], editmode);
                     },
                     itemCount: currentElements.length,
                   ),
+                  // In Edit mode , A button is added to 
+                  // Show a bottom Sheet fo adding new items
             editmode
                 ? Positioned(
                     bottom: device.height * 0.03,

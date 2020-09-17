@@ -4,14 +4,18 @@ import 'package:google_fonts/google_fonts.dart';
 import '../screens/weekDayScreen.dart';
 
 class WeekGrid extends StatelessWidget {
+  // Day And Icon are recieved via constructors
   final String day;
   final Icon icon;
 
   WeekGrid(this.day, this.icon);
   @override
   Widget build(BuildContext context) {
+    // Variable to get the device size
     final device = MediaQuery.of(context).size;
     return GestureDetector(
+      // On Tap takes us to another page with the current day
+      // As an argument 
         onTap: (){
             Navigator.of(context).pushNamed(WeekDayScreen.routeName,arguments:day );
         },
@@ -19,6 +23,7 @@ class WeekGrid extends StatelessWidget {
         child: Column(
           children: [
             ClipRRect(
+              // An image from the asset to display
               child: Image.asset(
                 'assets/$day.png',
                 fit: BoxFit.scaleDown,
