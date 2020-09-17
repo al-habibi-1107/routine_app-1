@@ -6,6 +6,7 @@ import '../models/subject.dart';
 import '../screens/editsubject.dart';
 
 class ItemTile extends StatelessWidget {
+  // The current item and editmode is passed in a Constructor
   final Item currentItem;
   final bool editmode;
   ItemTile(this.currentItem, this.editmode);
@@ -13,6 +14,7 @@ class ItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
+    // Getting a Start Time and trying to reformat it
     String startTime = DateFormat.jm().format(currentItem.startTime);
     String startTimeT = startTime.substring(0, 5);
     String am = startTime.substring(5);
@@ -89,6 +91,10 @@ class ItemTile extends StatelessWidget {
                   width: device.width * 0.13,
                 ),
                 editmode
+                // When the page is in edit mode
+                // An Icon Button is shown to allow Navigation to
+                // an Edit page with the current item being passed as 
+                // Parameter
                     ? IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {

@@ -6,9 +6,12 @@ import '../widgets/grid.dart';
 import '../screens/weekDayScreen.dart';
 
 class HomeScreen extends StatelessWidget {
+  // Variables to get Current Date and Day used
+  // in the code
   final todayDate = DateFormat.yMMMMEEEEd().format(DateTime.now());
   final todayDay = DateFormat.EEEE().format(DateTime.now());
-
+   
+   // A List of Lists to hold all the weekDays
   final List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
     ['Tuesday', Icon(Icons.tag_faces)],
@@ -20,10 +23,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(todayDay);
+    // print(todayDay);
+    // Variable to get the device Size
     final device = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
+      // Properties of App Bar
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
@@ -33,8 +38,11 @@ class HomeScreen extends StatelessWidget {
           style: GoogleFonts.poppins(),
         ),
       ),
+      // In Body we Stack up Widgets for an
+      // Interactive UI which is easier to build
       body: Stack(
         children: [
+      // Stack Level 1, A background Container
           Container(
             height: device.height * 0.35,
             width: device.width,
@@ -56,6 +64,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+      // Stack Level 2 - A Colum with Title Texts
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,27 +94,34 @@ class HomeScreen extends StatelessWidget {
                 ),
                 height: device.height * 0.15,
               ),
+              // The UI Build of the Grid of the Days
+              // With Custom Rows and columns
               Column(
                 children: <Widget>[
                   Container(
                     
                     margin:
                         EdgeInsets.symmetric(horizontal: device.width * 0.04),
+              // ROW -1 
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // WeekGrid is A custom Widget for the 
+                        // Grid Items
                         WeekGrid(weekDays[0][0], weekDays[0][1]),
                         WeekGrid(weekDays[1][0], weekDays[1][1]),
                         WeekGrid(weekDays[2][0], weekDays[2][1]),
                       ],
                     ),
                   ),
+                  // Some Space to Seperate the Rows
                   SizedBox(
                     height: device.height * 0.019,
                   ),
                   Container(
                     margin:
                         EdgeInsets.symmetric(horizontal: device.width * 0.04),
+                  // ROW -2
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -120,7 +136,11 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: device.height * 0.14,
               ),
+              // Setting up a clickable Container
+              // with custom Colors and contents
               GestureDetector(
+                // On Tap we Navigate to another Screen Showing The Schedule for the current day
+                // we pass the current day as an argument 
                 onTap: () {
                   Navigator.of(context)
                       .pushNamed(WeekDayScreen.routeName, arguments: todayDay);

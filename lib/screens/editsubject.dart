@@ -13,6 +13,7 @@ class EditSubject extends StatefulWidget {
 }
 
 class _EditSubjectState extends State<EditSubject> {
+  // A formkey to select a form an perform operations on it
   final _formKey = GlobalKey<FormState>();
   bool flag = true;
   String _subject;
@@ -21,8 +22,8 @@ class _EditSubjectState extends State<EditSubject> {
   String _startString;
   DateTime _endTime;
   String _endString;
-  
 
+  // A function to Show a time Picker to edit the starttime variable
   Future<TimeOfDay> _selectTime(BuildContext context) {
     return showTimePicker(
       context: context,
@@ -33,6 +34,7 @@ class _EditSubjectState extends State<EditSubject> {
     );
   }
 
+  // A function to Show a time Picker to edit the endtime variable
   Future<TimeOfDay> _selectendTime(BuildContext context) {
     return showTimePicker(
       context: context,
@@ -43,25 +45,24 @@ class _EditSubjectState extends State<EditSubject> {
     );
   }
 
-  void _saveForm(Item currentItem){
+  // A function to save the form and edit the
+  // current Subject item
+  void _saveForm(Item currentItem) {
+    final isValid = _formKey.currentState.validate();
 
-    final isValid=_formKey.currentState.validate();
-
-    if(isValid){
+    if (isValid) {
       _formKey.currentState.save();
-      Provider.of<Items>(context,listen: false).editItem(currentItem.id, _subject, _teacher, _startTime, _endTime);
-      
-
+      Provider.of<Items>(context, listen: false)
+          .editItem(currentItem.id, _subject, _teacher, _startTime, _endTime);
     }
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     Item currentItem = ModalRoute.of(context).settings.arguments;
     final device = MediaQuery.of(context).size;
-
+    // This code only runs once to initialise all
+    // The variables at time of navigation
     if (flag) {
       _subject = currentItem.subject.subjectName;
       _teacher = currentItem.subject.teacher;
@@ -69,7 +70,7 @@ class _EditSubjectState extends State<EditSubject> {
       _startString = DateFormat.jm().format(_startTime);
       _endTime = currentItem.endTime;
       _endString = DateFormat.jm().format(_startTime);
-      
+
       flag = false;
     }
 
@@ -122,6 +123,7 @@ class _EditSubjectState extends State<EditSubject> {
               ),
             ),
           ),
+          // Create a form with a formKey
           Form(
             key: _formKey,
             child: Container(
@@ -130,6 +132,7 @@ class _EditSubjectState extends State<EditSubject> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
+                  // A formfield to Edit the Subject
                   TextFormField(
                     initialValue: _subject,
                     onSaved: (value) {
@@ -156,6 +159,7 @@ class _EditSubjectState extends State<EditSubject> {
                       ),
                     ),
                   ),
+                  // A FormFeild to edit the teacher name
                   TextFormField(
                     initialValue: _teacher,
                     onSaved: (value) {
@@ -182,6 +186,8 @@ class _EditSubjectState extends State<EditSubject> {
                       ),
                     ),
                   ),
+                  // A Row containing Two Clickable
+                  // Time Pickers
                   Row(
                     children: [
                       GestureDetector(
@@ -267,13 +273,16 @@ class _EditSubjectState extends State<EditSubject> {
               IconButton(
                 splashColor: Colors.yellow,
                 onPressed: () {
-                    Provider.of<Items>(context,listen: false ).deleteItem(currentItem);
-                    Navigator.of(context).pop();
+                  // Deletes the current Item we were working on
+                  Provider.of<Items>(context, listen: false)
+                      .deleteItem(currentItem);
+                  Navigator.of(context).pop();
                 },
                 icon: Icon(Icons.delete),
-               
               ),
               IconButton(
+                // On Clicking the tick icon, The form
+                // Is validated and the Saved
                 onPressed: () {
                   _saveForm(currentItem);
                   Navigator.of(context).pop();

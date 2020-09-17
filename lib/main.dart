@@ -8,7 +8,7 @@ import './screens/subjectInput.dart';
 import './screens/editsubject.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Setting up a provider so that all the
+    // meembers can be accessed in different parts of code
     return MultiProvider(
+      // A provider for Items
       providers: [
         ChangeNotifierProvider.value(value: Items()),
       ],
@@ -27,7 +30,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        // Defining a Home screen 
         home: HomeScreen(),
+        // Defining Routes for easy navigation
         routes: {
           WeekDayScreen.routeName: (ctx) => WeekDayScreen(),
           SubjectInput.routeName : (ctx) => SubjectInput(),

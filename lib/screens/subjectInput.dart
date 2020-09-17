@@ -66,7 +66,7 @@ class _SubjectInputState extends State<SubjectInput> {
         _className,
         _teacher,
         _icon,
-        Colors.white,
+        _color,
       );
       Navigator.of(context).pop(currentSubject);
     }
