@@ -6,6 +6,7 @@ import './models/items.dart';
 import './screens/weekDayScreen.dart';
 import './screens/subjectInput.dart';
 import './screens/editsubject.dart';
+import './screens/settings_screen.dart';
 
 void main() {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           WeekDayScreen.routeName: (ctx) => WeekDayScreen(),
           SubjectInput.routeName : (ctx) => SubjectInput(),
           EditSubject.routeName : (ctx) => EditSubject(),
+          SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
     );

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/grid.dart';
 import '../screens/weekDayScreen.dart';
+import './settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   // Variables to get Current Date and Day used
@@ -33,10 +34,15 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
         title: Text(
-          'MyClasses',
+          'Schedulo',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(),
         ),
+        actions: [
+          IconButton(icon: Icon(Icons.settings), onPressed: (){
+            Navigator.of(context).pushNamed(SettingsScreen.routeName);
+          }),
+        ],
       ),
       // In Body we Stack up Widgets for an
       // Interactive UI which is easier to build

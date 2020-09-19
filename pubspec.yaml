@@ -60,6 +60,7 @@ flutter:
     - assets/Saturday.png
     - assets/calender.png
     - assets/empty_msg.png
+    - assets/info.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
