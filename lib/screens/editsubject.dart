@@ -75,6 +75,7 @@ class _EditSubjectState extends State<EditSubject> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
         title: Text('Edit Timetable'),

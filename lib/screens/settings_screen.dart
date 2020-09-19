@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import './about_page.dart';
+
 class SettingsScreen extends StatelessWidget {
   static const routeName = "/settings-screen";
   @override
@@ -15,18 +17,23 @@ class SettingsScreen extends StatelessWidget {
           style: GoogleFonts.poppins(),
         ),
       ),
-      body: ListView(children: [
-        ListTile(
-          leading:
-              Image.asset("assets/info.png", scale: 15, fit: BoxFit.contain),
-          title: Text(
-            "About App",
-            style:
-                GoogleFonts.ubuntu(fontWeight: FontWeight.bold, fontSize: 20),
+      body: ListView(
+        children: [
+          ListTile(
+            leading:
+                Image.asset("assets/info.png", scale: 15, fit: BoxFit.contain),
+            title: Text(
+              "About App",
+              style:
+                  GoogleFonts.ubuntu(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            subtitle: Text("Version,Suggesions and Developer Contact"),
+            onTap: (){
+              Navigator.of(context).pushNamed(AboutPage.routeName);
+            },
           ),
-          subtitle: Text("Version,Suggesions and Developer Contact"),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

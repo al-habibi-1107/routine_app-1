@@ -157,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(
                       horizontal: device.width * 0.07,
                       vertical: device.height * 0.01),
-                  height: device.height * 0.1,
+                  height: 95,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
