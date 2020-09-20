@@ -2,18 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   static const routeName = "/about-page";
+
+  @override
+  _AboutPageState createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
     final _formKey = GlobalKey<FormState>();
+
+    String response = " ";
+
   @override
   Widget build(BuildContext context) {
     final device= MediaQuery.of(context).size;
-    String response = " ";
 
     Future<void> submit() async {
       String subject = "Schedulo Issue";
       bool isValid = _formKey.currentState.validate();
       if (isValid) {
+        _formKey.currentState.save();
+        print(response);
         var url =
             'mailto:kamilanwar2001@gmail.com?subject=$subject&body=$response';
         if (await canLaunch(url)) {
