@@ -4,10 +4,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   static const routeName = "/about-page";
+    final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final device= MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
     String response = " ";
 
     Future<void> submit() async {
@@ -25,6 +25,7 @@ class AboutPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
@@ -68,8 +69,9 @@ class AboutPage extends StatelessWidget {
                 Form(
                   key: _formKey,
                   child: TextFormField(
+                    
                     decoration: InputDecoration(
-                      hintText: "Start Here",
+                      hintText: "Start here.."
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
