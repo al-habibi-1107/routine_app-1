@@ -19,7 +19,8 @@ class ItemBottomSheet extends StatefulWidget {
 
 class _ItemBottomSheetState extends State<ItemBottomSheet> {
   Subject thisSubject;
-
+  // Several Variables that are properties to a
+  // Particular Subject
   bool isSubject = false;
   bool isPresent = false;
   TimeOfDay _time = TimeOfDay.now();
@@ -66,6 +67,19 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
         context: context,
         child: AlertDialog(
           content: Text('Please check the Start and End Class times'),
+          actions: [
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Continue Editing"),
+            ),
+             FlatButton(onPressed: (){
+            var count=0;
+            Navigator.of(context).popUntil((route) => count++==2);
+
+            }, child: Text("Exit"))
+          ],
         ),
       );
     } else {
@@ -79,7 +93,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     return Container(
-      
+      height: 340,
       margin: EdgeInsets.symmetric(vertical: device.height * 0.015),
       child: Column(
         children: [
@@ -94,6 +108,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                 ),
               ),
               FloatingActionButton(
+                mini: true,
                 elevation: 5,
                 onPressed: () {
                   createItem();
@@ -122,28 +137,23 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     color: Colors.white,
                   ),
                   onPressed: () async {
-                    try{
-
-                    thisSubject = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SubjectInput(),
-                      ),
-                    );
-                    }
-                    catch(error){
+                    try {
+                      thisSubject = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SubjectInput(),
+                        ),
+                      );
+                    } catch (error) {
                       throw error;
                     }
-                    if(thisSubject==null){
-                      isSubject=false;
+                    if (thisSubject == null) {
+                      isSubject = false;
+                    } else {
+                      setState(() {
+                        isSubject = true;
+                      });
                     }
-                    else{
-
-                    setState(() {
-                      isSubject = true;
-                    });
-                    }
-                    
                   },
                 ),
               ),
@@ -152,7 +162,6 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Colors.grey),
-                 
                   color: isSubject ? thisSubject.color : Colors.white,
                 ),
                 child: ListTile(
