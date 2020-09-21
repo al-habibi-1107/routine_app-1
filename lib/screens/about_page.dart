@@ -6,7 +6,7 @@ class AboutPage extends StatelessWidget {
   static const routeName = "/about-page";
   @override
   Widget build(BuildContext context) {
-    final device= MediaQuery.of(context).size;
+    final device = MediaQuery.of(context).size;
     final _formKey = GlobalKey<FormState>();
     String response = " ";
 
@@ -67,29 +67,40 @@ class AboutPage extends StatelessWidget {
                 Text("Report here:"),
                 Form(
                   key: _formKey,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Start Here",
+                  child: Card(
+                    elevation: 5,
+                    margin:
+                        EdgeInsets.symmetric(vertical: device.height * 0.02),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: device.height * 0.02),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Start Here",
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Response must be atleast 7 charecters";
+                          } else
+                            return null;
+                        },
+                        onSaved: (value) {
+                          response = value;
+                        },
+                        maxLines: 5,
+                      ),
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Response must be atleast 7 charecters";
-                      } else
-                        return null;
-                    },
-                    onSaved: (value) {
-                      response = value;
-                    },
-                    maxLines: 5,
                   ),
                 ),
-                FlatButton(
+                RaisedButton(
+                  elevation: 5,
                   onPressed: () {
                     submit();
                   },
                   child: Text(
                     "Submit",
                   ),
+                  color: Colors.white,
                 ),
               ],
             ),
@@ -101,22 +112,22 @@ class AboutPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width:device.width*0.4,
+                  width: device.width * 0.4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
+                    children: [
                       Text("Kamil Anwar"),
                       Text("kamilanwar2001@gmail.com")
                     ],
                   ),
                 ),
                 Container(
-                  width:device.width*0.4,
+                  width: device.width * 0.4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
+                    children: [
                       Text("Aditya"),
-                      Text("kamilanwar2001@gmail.com")
+                      Text("adityapankaj2001@gmail.com")
                     ],
                   ),
                 ),
