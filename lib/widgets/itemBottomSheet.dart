@@ -66,7 +66,10 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
       showDialog(
         context: context,
         child: AlertDialog(
-          content: Text('Please check the Start and End Class times'),
+          content: Text(
+            'Please check the Start and End Class times',
+            style: GoogleFonts.ubuntu(),
+          ),
           actions: [
             FlatButton(
               onPressed: () {
@@ -74,11 +77,12 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
               },
               child: Text("Continue Editing"),
             ),
-             FlatButton(onPressed: (){
-            var count=0;
-            Navigator.of(context).popUntil((route) => count++==2);
-
-            }, child: Text("Exit"))
+            FlatButton(
+                onPressed: () {
+                  var count = 0;
+                  Navigator.of(context).popUntil((route) => count++ == 2);
+                },
+                child: Text("Exit"))
           ],
         ),
       );
@@ -102,12 +106,14 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
             children: <Widget>[
               Text(
                 'Add To Timetable',
-                style: GoogleFonts.arvo(
+                style: GoogleFonts.ubuntu(
                   fontSize: 20,
                   wordSpacing: 3,
                 ),
               ),
               FloatingActionButton(
+                backgroundColor: Color.fromRGBO(0, 01, 30, 1),
+                splashColor: Colors.grey,
                 mini: true,
                 elevation: 5,
                 onPressed: () {
@@ -123,20 +129,14 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
             children: <Widget>[
               Text(
                 'Class',
-                style: GoogleFonts.roboto(fontSize: 20),
+                style: GoogleFonts.ubuntu(fontSize: 20),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Color.fromRGBO(30, 54, 214, 1)),
-                  color: Color.fromRGBO(30, 54, 214, 1),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                  onPressed: () async {
+              FlatButton(
+                
+                splashColor: Colors.grey,
+                shape: CircleBorder(),
+                color: Color.fromRGBO(0, 01, 30, 1),
+                onPressed: () async {
                     try {
                       thisSubject = await Navigator.push(
                         context,
@@ -155,8 +155,9 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                       });
                     }
                   },
-                ),
+                child: Icon(Icons.add,color: Colors.white,),
               ),
+
               Container(
                 width: device.width * 0.4,
                 decoration: BoxDecoration(
@@ -166,8 +167,8 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                 ),
                 child: ListTile(
                   title: isSubject
-                      ? Text('${thisSubject.subjectName}')
-                      : Text('Subject'),
+                      ? Text('${thisSubject.subjectName}',style: GoogleFonts.ubuntu(),)
+                      : Text('Subject',style: GoogleFonts.ubuntu(),),
                   leading: isSubject
                       ? Icon(
                           thisSubject.iconpara,
@@ -189,7 +190,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
               children: <Widget>[
                 Text(
                   'Starts At',
-                  style: GoogleFonts.roboto(fontSize: 20),
+                  style: GoogleFonts.ubuntu(fontSize: 20),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -212,8 +213,8 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     width: device.width * 0.5,
                     child: Text(
                       '$_startTimeString',
-                      style: GoogleFonts.roboto(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.ubuntu(
+                          fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -228,7 +229,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
               children: <Widget>[
                 Text(
                   'Ends At',
-                  style: GoogleFonts.roboto(fontSize: 20),
+                  style: GoogleFonts.ubuntu(fontSize: 20),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -254,14 +255,14 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     width: device.width * 0.33,
                     child: Text(
                       '$_endTimeString',
-                      style: GoogleFonts.roboto(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.montserrat(
+                          fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
                 Text(
                   '${_duration.inMinutes} min',
-                  style: GoogleFonts.roboto(fontSize: 18),
+                  style: GoogleFonts.ubuntu(fontSize: 18),
                 )
               ],
             ),

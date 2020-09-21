@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/grid.dart';
 import '../screens/weekDayScreen.dart';
 import './settings_screen.dart';
+import '../models/items.dart';
+import '../models/subject.dart';
 
 class HomeScreen extends StatelessWidget {
   // Variables to get Current Date and Day used
@@ -21,9 +24,10 @@ class HomeScreen extends StatelessWidget {
     ['Friday', Icon(Icons.tag_faces)],
     ['Saturday', Icon(Icons.tag_faces)],
   ];
-
+  
   @override
   Widget build(BuildContext context) {
+  
     // print(todayDay);
     // Variable to get the device Size
     final device = MediaQuery.of(context).size;
@@ -204,6 +208,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Container(
+                child: Column(
+
+                ),
                 margin: EdgeInsets.symmetric(
                     horizontal: device.width * 0.07,
                     vertical: device.height * 0.01),

@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   static const routeName = "/about-page";
+
+  @override
+  _AboutPageState createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  String response = " ";
+
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
@@ -14,6 +24,8 @@ class AboutPage extends StatelessWidget {
       String subject = "Schedulo Issue";
       bool isValid = _formKey.currentState.validate();
       if (isValid) {
+        _formKey.currentState.save();
+        print(response);
         var url =
             'mailto:kamilanwar2001@gmail.com?subject=$subject&body=$response';
         if (await canLaunch(url)) {
@@ -25,6 +37,7 @@ class AboutPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 01, 30, 1),
@@ -63,14 +76,12 @@ class AboutPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Any Issues/Bugs in the Application"),
-                Text("Report here:"),
+                Text("Any Issues/Bugs in the Application",style: GoogleFonts.montserrat(),),
+                Text("Report here:",style: GoogleFonts.montserrat(),),
                 Form(
                   key: _formKey,
                   child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Start Here",
-                    ),
+                    decoration: InputDecoration(hintText: "Start here.."),
                     validator: (value) {
                       if (value.isEmpty) {
                         return "Response must be atleast 7 charecters";
@@ -84,11 +95,14 @@ class AboutPage extends StatelessWidget {
                   ),
                 ),
                 FlatButton(
+                  shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(7)),
+                  color: Color.fromRGBO(0, 01, 30, 1),
+                  splashColor: Colors.grey,
                   onPressed: () {
                     submit();
                   },
                   child: Text(
-                    "Submit",
+                    "Submit",style: GoogleFonts.montserrat(fontWeight:FontWeight.w600,color: Colors.white),
                   ),
                 ),
               ],
@@ -121,6 +135,13 @@ class AboutPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Center(
+              child: Text(
+                "Made in India",
+                style: GoogleFonts.montserrat(
+                    fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
