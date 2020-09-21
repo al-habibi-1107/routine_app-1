@@ -67,40 +67,29 @@ class AboutPage extends StatelessWidget {
                 Text("Report here:"),
                 Form(
                   key: _formKey,
-                  child: Card(
-                    elevation: 5,
-                    margin:
-                        EdgeInsets.symmetric(vertical: device.height * 0.02),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: device.height * 0.02),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "Start Here",
-                        ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return "Response must be atleast 7 charecters";
-                          } else
-                            return null;
-                        },
-                        onSaved: (value) {
-                          response = value;
-                        },
-                        maxLines: 5,
-                      ),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Start Here",
                     ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Response must be atleast 7 charecters";
+                      } else
+                        return null;
+                    },
+                    onSaved: (value) {
+                      response = value;
+                    },
+                    maxLines: 5,
                   ),
                 ),
-                RaisedButton(
-                  elevation: 5,
+                FlatButton(
                   onPressed: () {
                     submit();
                   },
                   child: Text(
                     "Submit",
                   ),
-                  color: Colors.white,
                 ),
               ],
             ),
@@ -127,7 +116,7 @@ class AboutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Aditya"),
-                      Text("adityapankaj2001@gmail.com")
+                      Text("kamilanwar2001@gmail.com")
                     ],
                   ),
                 ),
