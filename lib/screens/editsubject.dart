@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -91,7 +93,7 @@ class _EditSubjectState extends State<EditSubject> {
                 padding: EdgeInsets.only(
                   left: 10,
                 ),
-                height: device.height * 0.09,
+                height: device.height * 0.095,
                 width: device.width * 0.8,
                 decoration: BoxDecoration(
                     color: currentItem.subject.color,
@@ -101,22 +103,27 @@ class _EditSubjectState extends State<EditSubject> {
                   children: [
                     Icon(
                       currentItem.subject.iconpara,
-                      size: 30,
+                      size: 45,
+                      color: Colors.white70,
                     ),
-                    SizedBox(width: device.width * 0.1),
+                    SizedBox(width: device.width * 0.02),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           '$_subject',
-                          style: GoogleFonts.arya(fontSize: 25),
+                          style: GoogleFonts.poppins(
+                            fontSize: 25,
+                            color: Colors.white,
+                          ),
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                         ),
-                        Text(
-                          '$_teacher',
-                          style: GoogleFonts.arya(fontSize: 15),
-                        )
+                        Text('$_teacher',
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                              color: Colors.white,
+                            ))
                       ],
                     ),
                   ],
@@ -134,56 +141,102 @@ class _EditSubjectState extends State<EditSubject> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   // A formfield to Edit the Subject
-                  TextFormField(
-                    initialValue: _subject,
-                    onSaved: (value) {
-                      _subject = value;
-                    },
-                    onChanged: (value) {
-                      setState(() {
+                  Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: device.height * 0.02),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: device.width * 0.04),
+                    height: 50,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(253, 52, 75, 0.5),
+                            blurRadius: 2.0, // soften the shadow
+                            spreadRadius: 0, //extend the shadow
+                            offset: Offset(
+                              1.0, // Move to right 10  horizontally
+                              2.0, // Move to bottom 10 Vertically
+                            ),
+                          )
+                        ],
+                        color: Color.fromRGBO(253, 52, 75, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(17))),
+                    child: TextFormField(
+                      style: GoogleFonts.poppins(
+                          color: Colors.white, fontSize: 20),
+                      initialValue: _subject,
+                      onSaved: (value) {
                         _subject = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 3) {
-                        return 'Class name must be atleast 3 charecters';
-                      }
-                      return null;
-                    },
-                    key: ValueKey('ClassName'),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      icon: Icon(
-                        Icons.book,
-                        color: Colors.black,
-                        size: 40,
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          _subject = value;
+                        });
+                      },
+                      validator: (value) {
+                        if (value.isEmpty || value.length < 3) {
+                          return 'Class name must be atleast 3 charecters';
+                        }
+                        return null;
+                      },
+                      key: ValueKey('ClassName'),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(
+                          Icons.book,
+                          color: Colors.white,
+                          size: 40,
+                        ),
                       ),
                     ),
                   ),
                   // A FormFeild to edit the teacher name
-                  TextFormField(
-                    initialValue: _teacher,
-                    onSaved: (value) {
-                      _teacher = value;
-                    },
-                    onChanged: (value) {
-                      setState(() {
+                  Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: device.height * 0.02),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: device.width * 0.04),
+                    height: 50,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(255, 208, 13, 0.5),
+                            blurRadius: 2.0, // soften the shadow
+                            spreadRadius: 0, //extend the shadow
+                            offset: Offset(
+                              1.0, // Move to right 10  horizontally
+                              2.0, // Move to bottom 10 Vertically
+                            ),
+                          )
+                        ],
+                        color: Color.fromRGBO(255, 208, 13, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(17))),
+                    child: TextFormField(
+                      style: GoogleFonts.poppins(
+                          color: Colors.white, fontSize: 20),
+                      initialValue: _teacher,
+                      onSaved: (value) {
                         _teacher = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 3) {
-                        return 'Teacher name must be atleast 3 charecters';
-                      }
-                      return null;
-                    },
-                    key: ValueKey('Teacher'),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      icon: Icon(
-                        Icons.person,
-                        color: Colors.black,
-                        size: 40,
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          _teacher = value;
+                        });
+                      },
+                      validator: (value) {
+                        if (value.isEmpty || value.length < 3) {
+                          return 'Teacher name must be atleast 3 charecters';
+                        }
+                        return null;
+                      },
+                      key: ValueKey('Teacher'),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 40,
+                        ),
                       ),
                     ),
                   ),
