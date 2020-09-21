@@ -10,13 +10,13 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
-    String response = " ";
+  String response = " ";
 
   @override
   Widget build(BuildContext context) {
-    final device= MediaQuery.of(context).size;
+    final device = MediaQuery.of(context).size;
 
     Future<void> submit() async {
       String subject = "Schedulo Issue";
@@ -74,15 +74,12 @@ class _AboutPageState extends State<AboutPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Any Issues/Bugs in the Application"),
-                Text("Report here:"),
+                Text("Any Issues/Bugs in the Application",style: GoogleFonts.montserrat(),),
+                Text("Report here:",style: GoogleFonts.montserrat(),),
                 Form(
                   key: _formKey,
                   child: TextFormField(
-                    
-                    decoration: InputDecoration(
-                      hintText: "Start here.."
-                    ),
+                    decoration: InputDecoration(hintText: "Start here.."),
                     validator: (value) {
                       if (value.isEmpty) {
                         return "Response must be atleast 7 charecters";
@@ -96,11 +93,14 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 FlatButton(
+                  shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(7)),
+                  color: Color.fromRGBO(0, 01, 30, 1),
+                  splashColor: Colors.grey,
                   onPressed: () {
                     submit();
                   },
                   child: Text(
-                    "Submit",
+                    "Submit",style: GoogleFonts.montserrat(fontWeight:FontWeight.w600,color: Colors.white),
                   ),
                 ),
               ],
@@ -113,26 +113,33 @@ class _AboutPageState extends State<AboutPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width:device.width*0.4,
+                  width: device.width * 0.4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
+                    children: [
                       Text("Kamil Anwar"),
                       Text("kamilanwar2001@gmail.com")
                     ],
                   ),
                 ),
                 Container(
-                  width:device.width*0.4,
+                  width: device.width * 0.4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
+                    children: [
                       Text("Aditya"),
                       Text("kamilanwar2001@gmail.com")
                     ],
                   ),
                 ),
               ],
+            ),
+            Center(
+              child: Text(
+                "Made in India",
+                style: GoogleFonts.montserrat(
+                    fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
