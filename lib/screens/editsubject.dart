@@ -272,6 +272,7 @@ class _EditSubjectState extends State<EditSubject> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text('Start Time:'),
                                 Text('$_startString')
@@ -307,6 +308,7 @@ class _EditSubjectState extends State<EditSubject> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text('End Time:'),
                                 Text('$_endString')
@@ -324,25 +326,60 @@ class _EditSubjectState extends State<EditSubject> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              IconButton(
-                splashColor: Colors.yellow,
-                onPressed: () {
-                  // Deletes the current Item we were working on
-                  Provider.of<Items>(context, listen: false)
-                      .deleteItem(currentItem);
-                  Navigator.of(context).pop();
-                },
-                icon: Icon(Icons.delete),
+              Container(
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(253, 52, 75, 0.5),
+                        blurRadius: 2.0, // soften the shadow
+                        spreadRadius: 0, //extend the shadow
+                        offset: Offset(
+                          1.0, // Move to right 10  horizontally
+                          2.0, // Move to bottom 10 Vertically
+                        ),
+                      )
+                    ],
+                    color: Color.fromRGBO(253, 52, 75, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(100))),
+                child: IconButton(
+                  splashColor: Colors.yellow,
+                  onPressed: () {
+                    // Deletes the current Item we were working on
+                    Provider.of<Items>(context, listen: false)
+                        .deleteItem(currentItem);
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.delete, color: Colors.white),
+                ),
               ),
-              IconButton(
-                // On Clicking the tick icon, The form
-                // Is validated and the Saved
-                onPressed: () {
-                  _saveForm(currentItem);
-                  Navigator.of(context).pop();
-                },
-                splashColor: Colors.yellow,
-                icon: Icon(Icons.check),
+              Container(
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(253, 52, 75, 0.5),
+                        blurRadius: 2.0, // soften the shadow
+                        spreadRadius: 0, //extend the shadow
+                        offset: Offset(
+                          1.0, // Move to right 10  horizontally
+                          2.0, // Move to bottom 10 Vertically
+                        ),
+                      )
+                    ],
+                    color: Color.fromRGBO(253, 52, 75, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(100))),
+                child: IconButton(
+                  // On Clicking the tick icon, The form
+                  // Is validated and the Saved
+                  onPressed: () {
+                    _saveForm(currentItem);
+                    Navigator.of(context).pop();
+                  },
+                  splashColor: Colors.yellow,
+                  icon: Icon(
+                    Icons.check,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),
