@@ -17,6 +17,8 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
+    final _formKey = GlobalKey<FormState>();
+    String response = " ";
 
     Future<void> submit() async {
       String subject = "Schedulo Issue";

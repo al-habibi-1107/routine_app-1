@@ -27,8 +27,10 @@ class ItemTile extends StatelessWidget {
         children: [
           Text(
             '$startTimeT\n $am',
-            style:
-                GoogleFonts.arvo(fontSize: 22, color: Colors.grey, shadows: []),
+            style: GoogleFonts.arvo(
+              fontSize: 22,
+              color: Colors.black87,
+            ),
             textAlign: TextAlign.center,
           ),
           Container(
@@ -55,7 +57,7 @@ class ItemTile extends StatelessWidget {
               children: [
                 Icon(
                   currentItem.subject.iconpara,
-                  color: Colors.black45,
+                  color: Colors.white70,
                   size: device.height * 0.05,
                 ),
                 SizedBox(
@@ -91,14 +93,15 @@ class ItemTile extends StatelessWidget {
                   width: device.width * 0.13,
                 ),
                 editmode
-                // When the page is in edit mode
-                // An Icon Button is shown to allow Navigation to
-                // an Edit page with the current item being passed as 
-                // Parameter
+                    // When the page is in edit mode
+                    // An Icon Button is shown to allow Navigation to
+                    // an Edit page with the current item being passed as
+                    // Parameter
                     ? IconButton(
-                        icon: Icon(Icons.edit),
+                        icon: Icon(Icons.edit, color: Colors.white70),
                         onPressed: () {
-                         Navigator.of(context).pushNamed(EditSubject.routeName,arguments:currentItem );
+                          Navigator.of(context).pushNamed(EditSubject.routeName,
+                              arguments: currentItem);
                         },
                       )
                     : Container(),
