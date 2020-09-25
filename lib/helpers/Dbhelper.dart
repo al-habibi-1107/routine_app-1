@@ -14,20 +14,27 @@ class DBHelper {
       path.join(dbPath, 'classes.db'),
       onCreate: (db, version) async {
         db.execute(
-          'CREATE TABLE classes(id TEXT,subject TEXT,teacher TEXT,icon TEXT,color TEXT,startTime TEXT,endTime TEXT,day TEXT)'
+          'CREATE TABLE classes(id TEXT,subject TEXT,teacher TEXT,icon TEXT,color INTEGER,startTime TEXT,endTime TEXT,day TEXT)'
         );
-      },
+        
+      },version: 1
     );
   }
 
 // A function to insert elements into the
 // Created database if not done previously
-  Future<void> createDB(String table,Map<String,Object> data)async{
+  Future<void> insertDB(String table,Map<String,Object> data)async{
     final db = await database();
     db.insert(table, data,conflictAlgorithm:sql.ConflictAlgorithm.replace);
+    print('Inserted into Db');
   }
 
-  
+  Future<List<Map<String,Object>>> getData(String table)async{
+      print("got Data from table");
+      final db=await database();
+      return db.query(table);
+
+  }
 
 
 }
