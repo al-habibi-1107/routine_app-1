@@ -18,15 +18,21 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
     
+    // A submit function to launch the mail
     Future<void> submit() async {
       String subject = "Schedulo Issue";
+      // validate the form with its formKey
       bool isValid = _formKey.currentState.validate();
       if (isValid) {
+        // if the form is validated then save the form
         _formKey.currentState.save();
         print(response);
+        // get the url
         var url =
-            'mailto:kamilanwar2001@gmail.com?subject=$subject&body=$response';
+            'mailto:devpro.Inc@outlook.com?subject=$subject&body=$response';
+        // first check if the url can be launched or not
         if (await canLaunch(url)) {
+          // if true , launch the url
           await launch(url);
         } else {
           throw 'Could not launch $url';
@@ -76,6 +82,8 @@ class _AboutPageState extends State<AboutPage> {
               children: [
                 Text("Any Issues/Bugs in the Application",style: GoogleFonts.montserrat(),),
                 Text("Report here:",style: GoogleFonts.montserrat(),),
+                // Make a form to use as a body
+                // for the email
                 Form(
                   key: _formKey,
                   child: TextFormField(
@@ -92,6 +100,8 @@ class _AboutPageState extends State<AboutPage> {
                     maxLines: 5,
                   ),
                 ),
+                // A button to launch the function
+                // causes to submit thr form
                 FlatButton(
                   shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(7)),
                   color: Color.fromRGBO(0, 01, 30, 1),

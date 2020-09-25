@@ -20,14 +20,14 @@ class DBHelper {
     );
   }
 
+// A function to insert elements into the
+// Created database if not done previously
   Future<void> createDB(String table,Map<String,Object> data)async{
     final db = await database();
     db.insert(table, data,conflictAlgorithm:sql.ConflictAlgorithm.replace);
-
-
   }
 
-
+  
 
 
 }
