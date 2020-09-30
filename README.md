@@ -1,6 +1,19 @@
-# routine_app
+# Routine_app
 
-A new Flutter project.
+Schedulo is a flutter project made to keep track of the online classes Schedule of students.
+Sudents can add and remove classes , the data will be stored on Device.
+
+
+## Packages used
+- Sqflite - On device SQL database
+- Https - To send emails
+- Provider - For a better state management
+
+## Developers
+- Kamil @al-habibi-1107
+- Aditya @Aditya7feb
+
+
 
 ## Getting Started
 
