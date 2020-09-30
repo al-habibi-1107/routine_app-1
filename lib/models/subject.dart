@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+// A class definition of a Subject 
+// With its various attributes
 class Subject {
    String subjectName;
    String teacher;
@@ -16,6 +17,8 @@ class Subject {
   });
 }
 
+// A class defenition of an Item
+// With its different items
 class Item {
  String id;
   Subject subject;

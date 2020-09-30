@@ -55,7 +55,7 @@ class Items with ChangeNotifier {
           subject: Subject(
               subjectName: itemDb['subject'],
               teacher: itemDb['teacher'],
-              iconpara: Icons.cake,//itemDb['icon'],
+              iconpara:Icons.cake,
               color:Color(itemDb['color'])),
           startTime: DateTime.tryParse(itemDb['startTime']) ,
           endTime: DateTime.tryParse(itemDb['endTime']) ,
@@ -115,6 +115,7 @@ class Items with ChangeNotifier {
 
   void deleteItem(Item newItem) {
     _items.remove(newItem);
+    DBHelper().removeItem('classes', newItem.id);
     notifyListeners();
   }
 

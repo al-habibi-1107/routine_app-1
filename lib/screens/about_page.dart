@@ -57,9 +57,12 @@ class _AboutPageState extends State<AboutPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // The main content of the About Page
+            // Witha Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // Circle avatar for the App icon
                 CircleAvatar(
                   radius: 30,
                 ),
@@ -115,6 +118,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ],
             ),
+            // A contact developer Row 
             Text(
               "Contact Developer",
               style: GoogleFonts.ubuntu(fontSize: 20),
