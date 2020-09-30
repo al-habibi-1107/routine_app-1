@@ -28,7 +28,7 @@ class DBHelper {
     db.insert(table, data,conflictAlgorithm:sql.ConflictAlgorithm.replace);
     print('Inserted into Db');
   }
-
+// A function to get the data of subjects from table
   Future<List<Map<String,Object>>> getData(String table)async{
       print("got Data from table");
       final db=await database();
@@ -36,5 +36,11 @@ class DBHelper {
 
   }
 
+// Function to delete an item
+  Future<void> removeItem(String table,String id)async{
+    final db = await database();
+// searches the database for a similar ID
+    db.delete(table,where: "id=?",whereArgs: [id]);
+  }
 
 }
