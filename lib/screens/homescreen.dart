@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   final todayDay = DateFormat.EEEE().format(DateTime.now());
    
    // A List of Lists to hold all the weekDays
-  final List<List<Object>> weekDays = [
+  final  List<List<Object>> weekDays = [
     ['Monday', Icon(Icons.tag_faces)],
     ['Tuesday', Icon(Icons.tag_faces)],
     ['Wednesday', Icon(Icons.tag_faces)],

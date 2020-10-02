@@ -23,6 +23,37 @@ class _EditSubjectState extends State<EditSubject> {
   DateTime _endTime;
   String _endString;
 
+  void delete(Item currentItem) {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: Text("Are you sure you want to delete the item?"),
+        actions: [
+          FlatButton(
+              onPressed: () {
+                Provider.of<Items>(context, listen: false)
+                    .deleteItem(currentItem);
+                    var count=0;
+                Navigator.popUntil(context, (route) => count++==2);
+              },
+              child: Text(
+                "Yes",
+                style: GoogleFonts.ubuntu(color: Colors.green),
+              )),
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              "No",
+              style: GoogleFonts.ubuntu(color: Colors.red),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   // A function to Show a time Picker to edit the starttime variable
   Future<TimeOfDay> _selectTime(BuildContext context) {
     return showTimePicker(
@@ -69,7 +100,7 @@ class _EditSubjectState extends State<EditSubject> {
       _startTime = currentItem.startTime;
       _startString = DateFormat.jm().format(_startTime);
       _endTime = currentItem.endTime;
-      _endString = DateFormat.jm().format(_startTime);
+      _endString = DateFormat.jm().format(_endTime);
 
       flag = false;
     }
@@ -343,9 +374,7 @@ class _EditSubjectState extends State<EditSubject> {
                   splashColor: Colors.yellow,
                   onPressed: () {
                     // Deletes the current Item we were working on
-                    Provider.of<Items>(context, listen: false)
-                        .deleteItem(currentItem);
-                    Navigator.of(context).pop();
+                    delete(currentItem);
                   },
                   icon: Icon(Icons.delete, color: Colors.white),
                 ),
